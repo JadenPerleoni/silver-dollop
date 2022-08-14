@@ -13,9 +13,16 @@ async function main() {
       email: "yoman@gmail.com",
     },
   });
-
+  const user = await prisma.user.findUnique({
+    where: { email: "kk@gmail.com" },
+  });
+  if (!user) {
+    throw new Error("No such user found");
+  }
   const allUsers = await prisma.user.findMany();
   console.log(allUsers);
+
+  console.log(user);
 }
 
 // 4
