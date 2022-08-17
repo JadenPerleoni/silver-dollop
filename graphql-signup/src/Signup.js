@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useMutation, gql } from "@apollo/client";
 import { AUTH_TOKEN } from "./constants";
+import { useNavigate } from "react-router-dom";
+
 
 const SIGNUP_MUTATION = gql`
   mutation SignupMutation(
@@ -16,6 +18,8 @@ const SIGNUP_MUTATION = gql`
 `;
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const [info, setInfo] = useState({
     email: "",
     username: "",
@@ -34,6 +38,7 @@ const Signup = () => {
       console.log(
         `You entered email:  ${info.email} username: ${info.username} password: ${info.password}`
       );
+      navigate("/");
     },
   });
 
