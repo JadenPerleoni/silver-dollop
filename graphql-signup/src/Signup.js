@@ -4,7 +4,11 @@ import { useMutation, gql } from "@apollo/client";
 import { AUTH_TOKEN } from "./constants";
 
 const SIGNUP_MUTATION = gql`
-  mutation SignupMutation($email: String!, $password: String!, $username: String!) {
+  mutation SignupMutation(
+    $email: String!
+    $password: String!
+    $username: String!
+  ) {
     signup(email: $email, password: $password, username: $username) {
       token
     }
@@ -23,12 +27,10 @@ const Signup = () => {
     console.log(
       `You entered email:  ${info.email} username: ${info.username} password: ${info.password}`
     );
-    
   };
   const [signup] = useMutation(SIGNUP_MUTATION, {
-    
     variables: {
-      name: info.name,
+      username: info.username,
       email: info.email,
       password: info.password,
     },
@@ -37,42 +39,49 @@ const Signup = () => {
       console.log(
         `You entered email:  ${info.email} username: ${info.username} password: ${info.password}`
       );
-      
     },
   });
 
   return (
-    <form onSubmit={signup}>
-      <label>
-        Enter your email:
-        <input
-          type="text"
-          value={info.email}
-          onChange={(e) => setInfo({ ...info, email: e.target.value })}
-        />
-      </label>
+    <div>
+      <input
+        value={info.email}
+        onChange={(e) =>
+          setInfo({
+            ...info,
+            email: e.target.value,
+          })
+        }
+        type="text"
+        placeholder="Your email"
+      />
       <br></br>
-      <label>
-        Enter your username:
-        <input
-          type="text"
-          value={info.username}
-          onChange={(e) => setInfo({ ...info, username: e.target.value })}
-        />
-      </label>
+      <input
+        value={info.username}
+        onChange={(e) =>
+          setInfo({
+            ...info,
+            username: e.target.value,
+          })
+        }
+        type="text"
+        placeholder="Your username"
+      />
       <br></br>
-      <label>
-        Enter your password:
-        <input
-          type="text"
-          value={info.password}
-          onChange={(e) => setInfo({ ...info, password: e.target.value })}
-        />
-      </label>
+      <input
+        value={info.password}
+        onChange={(e) =>
+          setInfo({
+            ...info,
+            password: e.target.value,
+          })
+        }
+        type="text"
+        placeholder="Your password"
+      />
       <br></br>
-
-      <input type="submit" />
-    </form>
+      <button onClick={signup}>Create Account</button>
+    </div>
   );
 };
 
