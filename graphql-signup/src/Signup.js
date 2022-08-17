@@ -22,12 +22,7 @@ const Signup = () => {
     password: "",
   });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(
-      `You entered email:  ${info.email} username: ${info.username} password: ${info.password}`
-    );
-  };
+
   const [signup] = useMutation(SIGNUP_MUTATION, {
     variables: {
       username: info.username,
