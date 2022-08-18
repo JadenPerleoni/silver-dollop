@@ -5,6 +5,7 @@ import App from "./App.js";
 import reportWebVitals from "./reportWebVitals.js";
 import Signup from "./Signup.js";
 import Login from "./Login.js";
+import Allusers from "./Allusers";
 import { setContext } from "@apollo/client/link/context";
 import { AUTH_TOKEN } from "./constants";
 import { split } from "@apollo/client";
@@ -65,6 +66,8 @@ root.render(
           <Route path="/" element={<App />}>
             <Route path="signup" element={<Signup />} />
             <Route path="login" element={<Login />} />
+            <Route path="allusers" element={<Allusers />} />
+
           </Route>
         </Routes>{" "}
       </ApolloProvider>
