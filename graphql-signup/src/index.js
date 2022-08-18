@@ -1,10 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import App from "./App.js";
 import reportWebVitals from "./reportWebVitals.js";
 import Signup from "./Signup.js";
 import Login from "./Login.js";
+import Home from "./Home.js";
+
 import Allusers from "./Allusers";
 import { setContext } from "@apollo/client/link/context";
 import { AUTH_TOKEN } from "./constants";
@@ -64,10 +66,11 @@ root.render(
       <ApolloProvider client={client}>
         <Routes>
           <Route path="/" element={<App />}>
+            <Route path="/" element={<Navigate replace to="/home" />} />
+            <Route path="/home" element={<Home />} />
             <Route path="signup" element={<Signup />} />
             <Route path="login" element={<Login />} />
             <Route path="allusers" element={<Allusers />} />
-
           </Route>
         </Routes>{" "}
       </ApolloProvider>

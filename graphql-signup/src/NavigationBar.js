@@ -24,7 +24,7 @@ const NavigationBar = () => {
       >
         <Navbar bg="light" expand="lg">
           <Container>
-            <Navbar.Brand href="/">Home</Navbar.Brand>
+            <Navbar.Brand href="/home">Home</Navbar.Brand>
 
             <Navbar.Brand>
               {authToken && localStorage.getItem("username")}
