@@ -7,7 +7,7 @@ export default function Home() {
         paddingLeft: "30px",
       }}
     >
-      Welcome!
+      Welcome {localStorage.getItem("username")}
     </h1>
   );
 }
