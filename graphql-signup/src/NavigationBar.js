@@ -11,10 +11,11 @@ const NavigationBar = () => {
   const navigate = useNavigate();
 
   return (
-    <div style={{ 
-      paddingLeft: "30px" 
-      
-      }}>
+    <div
+      style={{
+        paddingLeft: "30px",
+      }}
+    >
       <div
         style={{
           borderBottom: "solid 1px",
@@ -32,7 +33,7 @@ const NavigationBar = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href = "/allusers">View all users</Nav.Link>
+                <Nav.Link href="/allusers">View all users</Nav.Link>
                 <Nav.Link href="/signup">
                   {!authToken && <div>Signup</div>}
                 </Nav.Link>
@@ -41,6 +42,7 @@ const NavigationBar = () => {
                     <div
                       onClick={() => {
                         localStorage.removeItem(AUTH_TOKEN);
+                        localStorage.removeItem("username");
                         navigate(`/login`);
                       }}
                     >

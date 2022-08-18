@@ -4,8 +4,6 @@ import { useMutation, gql } from "@apollo/client";
 import { AUTH_TOKEN } from "./constants";
 import { useNavigate } from "react-router-dom";
 
-
-
 const LOGIN_MUTATION = gql`
   mutation LoginMutation($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -25,16 +23,14 @@ const Login = () => {
     password: "",
   });
 
-
-
-  const [login] = useMutation(LOGIN_MUTATION, {
+  const [login, { data, loading, error }] = useMutation(LOGIN_MUTATION, {
     variables: {
       email: info.email,
       password: info.password,
     },
     onCompleted: ({ login }) => {
       localStorage.setItem(AUTH_TOKEN, login.token);
-      localStorage.setItem("username",login.user.username)
+      localStorage.setItem("username", login.user.username);
 
       console.log(
         `You entered email:  ${info.email} password: ${info.password}`
@@ -45,7 +41,7 @@ const Login = () => {
 
   return (
     <div>
-        <input
+      <input
         value={info.email}
         onChange={(e) =>
           setInfo({
@@ -71,7 +67,8 @@ const Login = () => {
       <br></br>
       <button onClick={login}>Login</button>
 
+      {error && <h2>{error.message}</h2>}
     </div>
-  )
+  );
 };
 export default Login;
