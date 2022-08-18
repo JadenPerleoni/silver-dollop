@@ -11,46 +11,56 @@ const NavigationBar = () => {
   const navigate = useNavigate();
 
   return (
-    <div
-      style={{
-        borderBottom: "solid 1px",
-        paddingBottom: "1rem",
-      }}
-    >
-      <Navbar bg="light" expand="lg">
-        <Container>
-          <Navbar.Brand href="/">Home</Navbar.Brand>
+    <div style={{ 
+      paddingLeft: "30px" 
+      
+      }}>
+      <div
+        style={{
+          borderBottom: "solid 1px",
+          paddingBottom: "1rem",
+        }}
+      >
+        <Navbar bg="light" expand="lg">
+          <Container>
+            <Navbar.Brand href="/">Home</Navbar.Brand>
 
-          <Navbar.Brand>
-            {authToken && localStorage.getItem("username")}
-          </Navbar.Brand>
-          
+            <Navbar.Brand>
+              {authToken && localStorage.getItem("username")}
+            </Navbar.Brand>
 
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/signup">Sign Up</Nav.Link>
-              <Nav.Link>
-            {authToken ? (
-              <div
-                onClick={() => {
-                  localStorage.removeItem(AUTH_TOKEN);
-                  navigate(`/login`);
-                }}
-              >Log out</div>
-            ) : (
-              <div
-                onClick={() => {
-                  navigate(`/login`);
-
-                }}
-              >Login</div>
-            )}
-          </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link href = "/allusers">View all users</Nav.Link>
+                <Nav.Link href="/signup">
+                  {!authToken && <div>Signup</div>}
+                </Nav.Link>
+                <Nav.Link>
+                  {authToken ? (
+                    <div
+                      onClick={() => {
+                        localStorage.removeItem(AUTH_TOKEN);
+                        navigate(`/login`);
+                      }}
+                    >
+                      Log out
+                    </div>
+                  ) : (
+                    <div
+                      onClick={() => {
+                        navigate(`/login`);
+                      }}
+                    >
+                      Login
+                    </div>
+                  )}
+                </Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      </div>
       <Outlet></Outlet>
     </div>
   );
